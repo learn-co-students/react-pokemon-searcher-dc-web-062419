@@ -15,9 +15,9 @@ class PokemonForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h3>Add a Pokemon!</h3>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} className='container'>
           <Form.Group widths="equal">
             <Form.Input fluid label="Name" placeholder="Name" name="name" />
             <Form.Input fluid label="hp" placeholder="hp" name="hp" />
