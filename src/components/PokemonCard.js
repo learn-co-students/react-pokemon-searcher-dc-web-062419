@@ -1,27 +1,54 @@
-import React from 'react'
-import { Card } from 'semantic-ui-react'
+import React from "react";
+import { Card } from "semantic-ui-react";
 
 class PokemonCard extends React.Component {
+
+  state ={
+    cardImage: "front"
+  }
+
+  changeImage = () =>{
+    if(this.state.cardImage === 'front'){
+      this.setState({cardImage: 'back'})
+    }
+    else{
+      this.setState({cardImage: 'front'})
+    }
+  }
+
+  currentImage = () => {
+     if(this.state.cardImage === 'front'){
+  
+      return <img alt="oh no!" src={this.props.pokemon.sprites.front}/> 
+      }
+
+      return <img alt="oh no!" src={this.props.pokemon.sprites.back}/>
+    
+  }
+
+
   render() {
+    
+    // debugger
     return (
       <Card>
-        <div>
+        <div onClick={this.changeImage}>
           <div className="image">
-            <img alt="oh no!" />
+            {this.currentImage()}
           </div>
           <div className="content">
-            <div className="header">POKEMON NAME HERE</div>
+            <div className="header">{this.props.pokemon.name}</div>
           </div>
           <div className="extra content">
             <span>
               <i className="icon heartbeat red" />
-              POKEMON HP HERE hp
+              {this.props.pokemon.stats.find(s => s.name === 'hp').value || 50} hp
             </span>
           </div>
         </div>
       </Card>
-    )
+    );
   }
 }
 
-export default PokemonCard
+export default PokemonCard;
