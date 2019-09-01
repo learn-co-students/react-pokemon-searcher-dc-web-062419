@@ -3,6 +3,7 @@ import PokemonCollection from "./PokemonCollection";
 import PokemonForm from "./PokemonForm";
 import { Search } from "semantic-ui-react";
 import _ from "lodash";
+import { format } from "path";
 
 class PokemonPage extends React.Component {
 
@@ -32,6 +33,13 @@ class PokemonPage extends React.Component {
    this.setState({searchResults: data.value})
   }
 
+  addingPokemon = (res) => {
+    let addingPoke = this.state.allavailablePokemon
+    addingPoke.push(res)
+    this.setState({allavailablePokemon: addingPoke})
+  }
+
+
 
   render() {
     // debugger
@@ -39,7 +47,7 @@ class PokemonPage extends React.Component {
       <div>
         <h1>Pokemon Searcher</h1>
         <br />
-        <PokemonForm />
+        <PokemonForm handleSubmit={this.addingPokemon}/>
         <br />
         <Search
           onSearchChange={_.debounce((event, data) => this.searchInput(event, data), 500)}
