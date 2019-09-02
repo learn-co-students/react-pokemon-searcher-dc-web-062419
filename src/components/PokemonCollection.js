@@ -5,8 +5,12 @@ import { Card } from 'semantic-ui-react'
 class PokemonCollection extends React.Component {
   render() {
     return (
-      <Card.Group itemsPerRow={6}>
-        <h1>Hello From Pokemon Collection</h1>
+      <Card.Group itemsPerRow={6} key="PokemonCollection">
+        {this.props.data.map(pokemon => {
+          if (pokemon.name.includes(this.props.searchText))
+            { return <PokemonCard pokemon={pokemon} key={pokemon.id} />}
+          }
+        )}
       </Card.Group>
     )
   }
