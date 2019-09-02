@@ -17,7 +17,6 @@ class PokemonCard extends React.Component {
   }
 
   render() {
-    console.log(this.props.pokemon)
     return (
       <Card>
         <div>
@@ -32,7 +31,7 @@ class PokemonCard extends React.Component {
           <div className="extra content">
             <span>
               <i className="icon heartbeat red" />
-              {this.props.pokemon.stats[5].value}
+              { this.props.pokemon.stats.find(stat=>stat.name==='hp').value || 45 } 
             </span>
           </div>
         </div>

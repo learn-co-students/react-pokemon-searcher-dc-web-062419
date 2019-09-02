@@ -8,7 +8,7 @@ class PokemonPage extends React.Component {
 
   constructor(){
     super()
-    this.state={
+    this.state = {
       pokemons: [],
       searchTerm: ''
     }
@@ -17,9 +17,18 @@ class PokemonPage extends React.Component {
   componentDidMount = ()=>{
     fetch('http://localhost:3000/pokemon')
     .then(res => res.json())
-    .then(pokemons => this.setState
-      ( { pokemons } )
-    )
+    .then(pokemons => this.setState({ pokemons }))
+  }
+
+  handleSearchChange = (event, {value})=>{
+    this.setState({
+      searchTerm: value
+    })
+  }
+
+  addPokemon = (newPokemon) => {
+    this.setState({
+      pokemons: [...this.state.pokemons], newPokemon})
   }
 
   render() {
@@ -28,13 +37,11 @@ class PokemonPage extends React.Component {
         <h1>Pokemon Searcher</h1>
         <br />
         <Search 
-          onSearchChange={_.debounce(() => console.log('🤔'), 500)} showNoResults={false} 
-          
-        />
+          onSearchChange={_.debounce(this.handleSearchChange, 500)} showNoResults={false} />
         <br />       
-        <PokemonForm />
+        <PokemonForm addPokemon={this.addPokemon} />
         <br />
-        <PokemonCollection pokemons={this.state.pokemons} />
+        <PokemonCollection pokemons={this.state.pokemons.filter(pokemon=>pokemon.name.includes(this.state.searchTerm))} />
         <br />
       </div>
     )
