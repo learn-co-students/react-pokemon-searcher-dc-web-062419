@@ -21,6 +21,7 @@ class PokemonForm extends React.Component {
 
   handleSubmit = (event)=>{
     event.preventDefault()
+    console.log(this.props)
 
     const { name, hp, frontUrl, backUrl } = this.state
     
@@ -87,7 +88,7 @@ class PokemonForm extends React.Component {
               label="Back Image URL" 
               placeholder="url" 
               name="backUrl"
-              value={this.state.backurl} 
+              value={this.state.backUrl} 
               onChange={this.handleChange}
             />
 

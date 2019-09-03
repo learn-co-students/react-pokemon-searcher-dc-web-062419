@@ -26,9 +26,12 @@ class PokemonPage extends React.Component {
     })
   }
 
+  /* state changing callback, so that the new 
+  Pokemon gets rendered to the page without refresh */
+  
   addPokemon = (newPokemon) => {
     this.setState({
-      pokemons: [...this.state.pokemons], newPokemon})
+      pokemons: [...this.state.pokemons, newPokemon] })
   }
 
   render() {
