@@ -47,6 +47,7 @@ class PokemonForm extends React.Component {
       .then(res=>res.json())
       .then(newPokemon => this.props.addPokemon(newPokemon))
 
+      // resets form, event.target.reset() doesn't work
       this.setState({
         name: '',
         hp: '',

@@ -34,6 +34,16 @@ class PokemonPage extends React.Component {
       pokemons: [...this.state.pokemons, newPokemon] })
   }
 
+  // getSortedPokemons = () => {
+  //   let copy = [...this.state.pokemons]
+  //   let sortedCopy = copy.sort((a,b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
+    
+  //   this.setState({
+  //     pokemons: sortedCopy
+  //   })
+
+  // }
+
   render() {
     return (
       <div>
@@ -44,7 +54,8 @@ class PokemonPage extends React.Component {
         <br />       
         <PokemonForm addPokemon={this.addPokemon} />
         <br />
-        <PokemonCollection pokemons={this.state.pokemons.filter(pokemon=>pokemon.name.includes(this.state.searchTerm))} />
+        {/* <button className='ui button' onClick={this.getSortedPokemons}>Sort Pokemons alphabetically by name</button> */}
+        <PokemonCollection pokemons={this.state.pokemons.filter(pokemon => pokemon.name.includes(this.state.searchTerm))} />
         <br />
       </div>
     )

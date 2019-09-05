@@ -17,21 +17,24 @@ class PokemonCard extends React.Component {
   }
 
   render() {
+
+    const { name, sprites: { front, back }, stats } = this.props.pokemon 
+
     return (
       <Card>
         <div>
           <div className="image" onClick={this.flipSprite} >
-            { this.state.frontSpriteShown ? <img alt="front of pokemon" src={this.props.pokemon.sprites.front} /> : 
-              <img alt="back of pokemon" src={this.props.pokemon.sprites.back} />
+            { this.state.frontSpriteShown ? <img alt="front of pokemon" src={front} /> : 
+              <img alt="back of pokemon" src={back} />
             }
           </div>
           <div className="content">
-            <div className="header">{this.props.pokemon.name}</div>
+            <div className="header">{name}</div>
           </div>
           <div className="extra content">
             <span>
               <i className="icon heartbeat red" />
-              { this.props.pokemon.stats.find(stat=>stat.name==='hp').value || 45 } 
+              { stats.find(stat => stat.name ==='hp').value || 45 } 
             </span>
           </div>
         </div>
